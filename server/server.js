@@ -11,6 +11,9 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middleware
+app.use(cors({
+  origin: 'https://krishna-collection.onrender.com',
+}));
 app.use(bodyParser.json());
 app.use(cors());
 
