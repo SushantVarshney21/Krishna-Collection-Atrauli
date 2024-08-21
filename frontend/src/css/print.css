@@ -1,0 +1,145 @@
+.invoice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.invoice-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.invoice-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.customer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.customer-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.customer-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  /* text-align: right; */
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
+
+.customer-info {
+  margin-bottom: 20px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.invoice-table th, .invoice-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.invoice-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.invoice-total {
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.print-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.print-button:hover {
+  background-color: #0056b3;
+}
+
+/* Add styles for the store button */
+.store-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.store-button:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 600px) {
+  .invoice-container {
+    padding: 10px;
+  }
+
+  .invoice-title {
+    font-size: 20px;
+  }
+
+  .invoice-total {
+    font-size: 18px;
+  }
+
+  .invoice-table th, .invoice-table td {
+    padding: 6px;
+  }
+
+  .print-button {
+    width: 100%;
+  }
+}
