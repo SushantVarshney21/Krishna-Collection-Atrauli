@@ -4,22 +4,20 @@ import { useNavigate } from 'react-router-dom';
 
 const InvoiceTable = () => {
   const [invoices, setInvoices] = useState([]);
-
-  const nav = useNavigate()
-  useEffect(()=>{
-    const storedEmail = localStorage.getItem("userEmail");
-  
-    // Check if the stored email matches the predefined email
-    if (storedEmail !== process.env.REACT_APP_EMAIL) {
-      nav("/login"); // Redirect to login page if not authenticated
-    }
-  },[])
+  const nav = useNavigate();
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_SERVER_URL)
+    const storedEmail = localStorage.getItem("userEmail");
+  
+    if (storedEmail !== process.env.REACT_APP_EMAIL) {
+      nav("/login");
+    }
+  }, [nav]);
+
+  useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/invoices/getallinvoice`)
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/invoices/getallinvoice`);
         setInvoices(response.data);
       } catch (err) {
         console.error('Error fetching invoices:', err);
@@ -28,6 +26,13 @@ const InvoiceTable = () => {
 
     fetchInvoices();
   }, []);
+
+  const convertToAmPm = (timeStr) => {
+    const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+    const period = hours < 12 ? 'AM' : 'PM';
+    const adjustedHours = hours % 12 || 12;
+    return `${adjustedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${period}`;
+  };
 
   return (
     <div>
@@ -49,8 +54,8 @@ const InvoiceTable = () => {
               <td>{index + 1}</td>
               <td>{invoice.customerName}</td>
               <td>{invoice.customerPhone}</td>
-              <td>{new Date(invoice.date).toLocaleDateString()}</td>
-              <td>{new Date(invoice.date).toLocaleTimeString()}</td>
+              <td>{invoice.date}</td>
+              <td>{convertToAmPm(invoice.time)}</td> {/* Convert time to AM/PM format */}
               <td>{invoice.totalAmount}</td>
             </tr>
           ))}
