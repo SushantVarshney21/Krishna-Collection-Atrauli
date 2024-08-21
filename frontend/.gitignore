@@ -86,7 +86,7 @@ Icon
 dist/
 
 # Hugo
-/public/
+
 resources/_gen/
 
 # temporary files from IDEs
@@ -115,8 +115,7 @@ resources/_gen/
 
 # React and React Native
 
-public/build/
-public/static/
+
 
 # Firebase
 .firebaserc
