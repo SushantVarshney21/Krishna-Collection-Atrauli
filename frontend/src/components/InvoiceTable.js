@@ -27,12 +27,7 @@ const InvoiceTable = () => {
     fetchInvoices();
   }, []);
 
-  const convertToAmPm = (timeStr) => {
-    const [hours, minutes, seconds] = timeStr.split(':').map(Number);
-    const period = hours < 12 ? 'AM' : 'PM';
-    const adjustedHours = hours % 12 || 12;
-    return `${adjustedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${period}`;
-  };
+ 
 
   return (
     <div>
@@ -55,7 +50,7 @@ const InvoiceTable = () => {
               <td>{invoice.customerName}</td>
               <td>{invoice.customerPhone}</td>
               <td>{invoice.date}</td>
-              <td>{convertToAmPm(invoice.time)}</td> {/* Convert time to AM/PM format */}
+              <td>{invoice.time}</td>
               <td>{invoice.totalAmount}</td>
             </tr>
           ))}
