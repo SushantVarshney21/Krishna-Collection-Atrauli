@@ -55,7 +55,7 @@ function Calculator() {
      <div className="calculator">
       <form>
         <input type="text" value={input} placeholder="0" readOnly />
-        {/* <input type="text" value={result} placeholder="Result" readOnly /> */}
+        <input type="text" value={result} placeholder="Total" readOnly />
       </form>
 
       <div className="keypad">
@@ -76,7 +76,7 @@ function Calculator() {
         <button name="0" onClick={handleClick}>0</button>
         <button name="+" onClick={handleClick}>+</button>
         {/* <button name="." onClick={handleClick}>.</button> */}
-        {/* <button onClick={calculate} id="result">=</button> */}
+        <button onClick={calculate} id="result">Total</button>
       </div>
     </div>
       <Link to={`/print/${input}`}><button style={{backgroundColor:"green"}}>Submit</button></Link>

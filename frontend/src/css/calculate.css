@@ -48,7 +48,7 @@
   }
   
   #result {
-    grid-column: span 2;
+    grid-column: span 4;
     background-color: #4CAF50;
     color: white;
   }

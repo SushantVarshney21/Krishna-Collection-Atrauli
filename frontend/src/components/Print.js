@@ -6,8 +6,8 @@ const Print = () => {
   const { inputData } = useParams();
   const [output, setOutput] = useState([]);
   const [total, setTotal] = useState(0);
-  const [customerName, setCustomerName] = useState('');
-  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerName, setCustomerName] = useState('XYZ');
+  const [customerPhone, setCustomerPhone] = useState('0000000000');
   const [submitted, setSubmitted] = useState(false);
   const organizationName = "Krishna Collection Atrauli";
 
@@ -115,7 +115,6 @@ const Print = () => {
               id="name"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              required
               style={{ textAlign: 'left' }}
             />
           </div>
@@ -129,7 +128,6 @@ const Print = () => {
               id="phone"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
-              required
               style={{ textAlign: 'left' }}
             />
           </div>
