@@ -15,7 +15,7 @@ app.use(cors({
   origin: 'https://krishna-collection.onrender.com',
 }));
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 
 

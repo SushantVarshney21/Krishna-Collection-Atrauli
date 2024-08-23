@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams , useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../css/print.css';
 
 const Print = () => {
@@ -9,19 +9,19 @@ const Print = () => {
   const [customerName, setCustomerName] = useState('XYZ');
   const [customerPhone, setCustomerPhone] = useState('0000000000');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // New loading state for store invoice button
   const organizationName = "Krishna Collection Atrauli";
 
-  const nav = useNavigate()
-  useEffect(()=>{
+  const nav = useNavigate();
+
+  useEffect(() => {
     const storedEmail = localStorage.getItem("userEmail");
   
-    // Check if the stored email matches the predefined email
     if (storedEmail !== process.env.REACT_APP_EMAIL) {
-      nav("/login"); // Redirect to login page if not authenticated
+      nav("/login");
     }
-  },[])
+  }, [nav]);
 
-  // Format current date to dd/mm/yyyy
   const formatDateToDDMMYYYY = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -66,6 +66,8 @@ const Print = () => {
   }
 
   const handleStoreInvoice = async () => {
+    setLoading(true); // Set loading to true when storing invoice begins
+
     const invoiceData = {
       organizationName,
       date: currentDate,
@@ -101,6 +103,8 @@ const Print = () => {
     } catch (error) {
       console.error('Error storing invoice details:', error);
       alert('Error storing invoice details');
+    } finally {
+      setLoading(false); // Set loading to false after storing invoice completes
     }
   };
 
@@ -122,9 +126,9 @@ const Print = () => {
             <label htmlFor="phone">Customer Phone Number:</label>
             <input
               type="tel"
-              maxlength="10" 
+              maxLength="10"
               pattern="\d{10}"
-               title="Please enter exactly 10 digits"
+              title="Please enter exactly 10 digits"
               id="phone"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
@@ -160,7 +164,9 @@ const Print = () => {
           </table>
           <h2 className="invoice-total">Grand Total: {total}</h2>
           <button className="print-button" onClick={window.print}>Print Invoice</button>
-          <button className="store-button" onClick={handleStoreInvoice}>Store Invoice</button>
+          <button className="store-button" onClick={handleStoreInvoice} disabled={loading}>
+            {loading ? 'Storing Invoice...' : 'Store Invoice'}
+          </button>
         </>
       )}
     </div>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const InvoiceTable = () => {
   const [invoices, setInvoices] = useState([]);
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
 
   useEffect(() => {
@@ -21,13 +22,17 @@ const InvoiceTable = () => {
         setInvoices(response.data);
       } catch (err) {
         console.error('Error fetching invoices:', err);
+      } finally {
+        setLoading(false); // Stop loading regardless of whether invoices are fetched or not
       }
     };
 
     fetchInvoices();
   }, []);
 
- 
+  if (loading) {
+    return <p>Loading...</p>; // Display loading text or a spinner
+  }
 
   return (
     <div>
@@ -44,16 +49,22 @@ const InvoiceTable = () => {
           </tr>
         </thead>
         <tbody>
-          {invoices.map((invoice, index) => (
-            <tr key={invoice._id}>
-              <td>{index + 1}</td>
-              <td>{invoice.customerName}</td>
-              <td>{invoice.customerPhone}</td>
-              <td>{invoice.date}</td>
-              <td>{invoice.time}</td>
-              <td>{invoice.totalAmount}</td>
+          {invoices.length > 0 ? (
+            invoices.map((invoice, index) => (
+              <tr key={invoice._id}>
+                <td>{index + 1}</td>
+                <td>{invoice.customerName}</td>
+                <td>{invoice.customerPhone}</td>
+                <td>{invoice.date}</td>
+                <td>{invoice.time}</td>
+                <td>{invoice.totalAmount}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No invoices found</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
